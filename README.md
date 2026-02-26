@@ -14,6 +14,12 @@
 
 ---
 
+##📸 Screenshots
+<img width="785" height="594" alt="image" src="https://github.com/user-attachments/assets/338d24ec-c180-4501-9458-7fd3c332ae32" />
+<img width="785" height="593" alt="image" src="https://github.com/user-attachments/assets/5ff679ce-e120-49fa-aa19-da1d553d2c75" />
+
+
+
 ## 🇳🇱 Nederlands
 
 ### Wat is dit?
