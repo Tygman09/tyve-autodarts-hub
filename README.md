@@ -18,7 +18,8 @@
 
 <div align="center">
   <img width="49%" alt="Login" src="https://github.com/user-attachments/assets/338d24ec-c180-4501-9458-7fd3c332ae32" />
-  <img width="49%" alt="Menu" src="https://github.com/user-attachments/assets/5ff679ce-e120-49fa-aa19-da1d553d2c75" />
+  <img width="49%" alt="Live" src="https://github.com/user-attachments/assets/92959762-d043-4c8d-aa1c-935bb179df90" />
+
 </div>
 
 ## 🇳🇱 Nederlands
