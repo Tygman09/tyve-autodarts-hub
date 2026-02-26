@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Autodarts Login</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: #16213e;
+      border-radius: 14px;
+      padding: 36px 32px;
+      width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    h2 { color: #e94560; font-size: 22px; text-align: center; margin-bottom: 4px; }
+    input {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #0f3460;
+      background: #1a1a2e;
+      color: #eee;
+      font-size: 14px;
+      width: 100%;
+    }
+    input:focus { outline: none; border-color: #e94560; }
+    button {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    #btn-login { background: #e94560; color: white; }
+    #btn-login:hover { background: #c73652; }
+    #btn-use-cached { background: #0f3460; color: #eee; }
+    #btn-use-cached:hover { background: #1a4a8a; }
+    #cached { display: none; }
+    #cached-name { font-size: 13px; color: #aaa; text-align: center; }
+    #status { font-size: 13px; text-align: center; color: #aaa; min-height: 18px; }
+    .divider { border: none; border-top: 1px solid #0f3460; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🎯 Autodarts Hub</h2>
+
+    <div id="cached">
+      <div id="cached-name"></div>
+      <button id="btn-use-cached">Doorgaan met vorige login</button>
+      <hr class="divider">
+    </div>
+
+    <input type="email"    id="email"    placeholder="E-mailadres" />
+    <input type="password" id="password" placeholder="Wachtwoord" />
+    <input type="text"     id="boardId"  placeholder="Board ID" />
+    <button id="btn-login">Inloggen</button>
+    <div id="status"></div>
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>

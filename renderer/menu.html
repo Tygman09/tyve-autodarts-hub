@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Autodarts Menu</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      display: flex;
+      height: 100vh;
+    }
+    .sidebar {
+      width: 220px;
+      background: #16213e;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sidebar h2 { color: #e94560; margin-bottom: 16px; font-size: 18px; }
+    .sidebar button {
+      padding: 10px 14px;
+      background: #0f3460;
+      color: #eee;
+      border: none;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .sidebar button:hover { background: #e94560; }
+    .sidebar button.active { background: #e94560; }
+    .sidebar .logout { margin-top: auto; background: #2a0a0a; color: #e94560; }
+    .sidebar .logout:hover { background: #e94560; color: white; }
+    .content { flex: 1; padding: 32px; overflow-y: auto; }
+    h1 { font-size: 22px; margin-bottom: 20px; color: #e94560; }
+    .match-card { background: #16213e; border-radius: 10px; padding: 20px; margin-bottom: 12px; }
+    .match-card h3 { color: #e94560; margin-bottom: 8px; }
+
+    /* Live scoreboard */
+    #live-box { display: none; }
+    #live-box.active { display: block; }
+    #live-status { font-size: 13px; color: #aaa; margin-bottom: 20px; }
+
+    .scoreboard {
+      display: flex;
+      gap: 16px;
+    }
+    .player-card {
+      flex: 1;
+      background: #16213e;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: border 0.2s;
+    }
+    .player-card.active-player {
+      border-color: #e94560;
+    }
+    .player-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      background: #0f3460;
+      overflow: hidden;
+    }
+    .player-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .player-name { font-size: 16px; font-weight: bold; margin-bottom: 4px; }
+    .player-score {
+      font-size: 52px;
+      font-weight: bold;
+      color: #e94560;
+      line-height: 1;
+      margin: 12px 0;
+    }
+    .player-points {
+      font-size: 22px;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+    .player-stats {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      font-size: 12px;
+      color: #888;
+    }
+    .player-stats span { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .player-stats strong { color: #eee; font-size: 14px; }
+
+    .match-info {
+      background: #16213e;
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      color: #aaa;
+    }
+    .match-info span strong { color: #eee; }
+
+    .chalkboard {
+      margin-top: 16px;
+      background: #16213e;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .chalkboard table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .chalkboard th {
+      background: #0f3460;
+      padding: 8px 12px;
+      text-align: left;
+      color: #aaa;
+      font-weight: normal;
+    }
+    .chalkboard td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #1a1a2e;
+    }
+    .chalkboard tr:last-child td { border-bottom: none; }
+    .struck { text-decoration: line-through; color: #555; }
+
+    .toast {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-80px);
+      background: #16213e;
+      border: 2px solid #e94560;
+      border-radius: 12px;
+      padding: 16px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      z-index: 999;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+      min-width: 280px;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>🎯 Autodarts</h2>
+    <button id="btn-boards">📋 Borden</button>
+    <button id="btn-history">📜 Wedstrijd historie</button>
+    <button id="btn-current">🎯 Huidige wedstrijd</button>
+    <button id="btn-live">🔴 Live volgen</button>
+    <button class="logout" id="btn-logout">🚪 Uitloggen</button>
+  </div>
+  <div class="content">
+    <h1 id="page-title">Welkom</h1>
+    <div id="output">Kies een optie in het menu.</div>
+    <div id="live-box">
+      <div id="live-status">⏳ Verbinden...</div>
+      <div id="live-content"></div>
+    </div>
+  </div>
+  <script src="menu.js"></script>
+  <div class="toast" id="toast"></div>
+</body>
+</html>

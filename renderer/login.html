@@ -1,0 +1,33 @@
+const status = document.getElementById("status");
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const cached = await window.api.getCachedLogin();
+  if (cached.username) {
+    document.getElementById("cached-name").textContent = `Eerdere login: ${cached.username}`;
+    document.getElementById("cached").style.display = "block";
+    document.getElementById("email").value = cached.username;
+    document.getElementById("password").value = cached.password;
+  }
+});
+
+document.getElementById("btn-use-cached").addEventListener("click", async () => {
+  const cached = await window.api.getCachedLogin();
+  await doLogin(cached.username, cached.password, false);
+});
+
+document.getElementById("btn-login").addEventListener("click", async () => {
+  const email    = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  await doLogin(email, password, true);
+});
+
+async function doLogin(email, password, save) {
+  status.textContent = "⏳ Inloggen...";
+  const result = await window.api.login({ email, password, save });
+  if (result.success) {
+    status.textContent = `✔ Welkom, ${result.user.name}!`;
+    setTimeout(() => window.api.goToMenu(), 800);
+  } else {
+    status.textContent = "❌ Inloggen mislukt. Controleer je gegevens.";
+  }
+}
